@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rates & Availability</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Wasaga Sunset Cottages</a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cottages.html">Cottages</a></li>
+                <li><a href="rates.html" class="active">Rates & Availability</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <button class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<div id="dynamic-banner"></div>
+
+<main class="content">
+    <section class="page-section rates-section">
+        <h1>Rates & Availability</h1>
+        <p>View current rates and availability for each cottage.</p>
+
+        <div id="rates-container"></div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 Wasaga Sunset Cottages — All Rights Reserved</p>
+</footer>
+
+<script src="js/ical.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/cottages.js"></script>
+
+<script>
+    const cottageMonthOffsets = {};
+    const selectedYear = new Date().getFullYear();
+
+    function renderRatesAndCalendars() {
+        const container = document.getElementById("rates-container");
+        container.innerHTML = "";
+
+        cottages.forEach(cottage => {
+            cottageMonthOffsets[cottage.id] = cottageMonthOffsets[cottage.id] || 0;
+
+            const div = document.createElement("div");
+            div.className = "rate-card cottage-calendar-block";
+
+            div.innerHTML = `
+                <h2>${cottage.name}</h2>
+                <p><strong>Rate:</strong> ${cottage.rate}</p>
+
+                <div class="calendar-controls">
+                    <button type="button" class="cal-prev" data-cottage="${cottage.id}">Previous</button>
+
+                    <select class="year-selector" data-cottage="${cottage.id}">
+                        ${generateYearOptions()}
+                    </select>
+
+                    <button type="button" class="cal-next" data-cottage="${cottage.id}">Next</button>
+                </div>
+
+                <div class="three-month-wrapper">
+
+                    <div class="single-month">
+                        <span class="cal-month-label" id="month-label-${cottage.id}-0"></span>
+                        <div id="calendar-${cottage.id}-0" class="calendar"></div>
+                    </div>
+
+                    <div class="single-month">
+                        <span class="cal-month-label" id="month-label-${cottage.id}-1"></span>
+                        <div id="calendar-${cottage.id}-1" class="calendar"></div>
+                    </div>
+
+                    <div class="single-month">
+                        <span class="cal-month-label" id="month-label-${cottage.id}-2"></span>
+                        <div id="calendar-${cottage.id}-2" class="calendar"></div>
+                    </div>
+
+                </div>
+
+                <div class="calendar-legend">
+                    <span class="legend-airbnb">🟦 Airbnb</span>
+                    <span class="legend-direct">🟩 Direct Booking</span>
+                </div>
+
+                <a href="${cottage.page}" class="view-link">View Cottage</a>
+                <a href="booking.html?cottage=${cottage.id}" class="book-now-btn">Book Now</a>
+            `;
+
+            container.appendChild(div);
+
+            loadThreeMonths(cottage);
+        });
+
+        // Previous button
+        document.querySelectorAll(".cal-prev").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-cottage");
+                cottageMonthOffsets[id]--;
+                const cottage = cottages.find(c => c.id === id);
+                loadThreeMonths(cottage);
+            });
+        });
+
+        // Next button
+        document.querySelectorAll(".cal-next").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-cottage");
+                cottageMonthOffsets[id]++;
+                const cottage = cottages.find(c => c.id === id);
+                loadThreeMonths(cottage);
+            });
+        });
+
+        // Year selector
+        document.querySelectorAll(".year-selector").forEach(sel => {
+            sel.addEventListener("change", () => {
+                const id = sel.getAttribute("data-cottage");
+                const cottage = cottages.find(c => c.id === id);
+
+                const newYear = parseInt(sel.value);
+                const currentYear = new Date().getFullYear();
+
+                cottageMonthOffsets[id] = (newYear - currentYear) * 12;
+
+                loadThreeMonths(cottage);
+            });
+        });
+    }
+
+    function loadThreeMonths(cottage) {
+        for (let m = 0; m < 3; m++) {
+            loadMergedCalendar(
+                [cottage.airbnbIcal],
+                `calendar-${cottage.id}-${m}`,
+                cottage.id,
+                cottageMonthOffsets[cottage.id] + m,
+                `month-label-${cottage.id}-${m}`
+            );
+        }
+    }
+
+    function generateYearOptions() {
+        let html = "";
+        const currentYear = new Date().getFullYear();
+
+        for (let y = currentYear - 1; y <= currentYear + 3; y++) {
+            html += `<option value="${y}" ${y === currentYear ? "selected" : ""}>${y}</option>`;
+        }
+
+        return html;
+    }
+
+    document.addEventListener("DOMContentLoaded", renderRatesAndCalendars);
+</script>
+
+<script src="js/menu.js"></script>
+<script src="js/banner.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cottage 1</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Wasaga Sunset Cottages</a>
+
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cottages.html">Cottages</a></li>
+                <li><a href="rates.html">Rates & Availability</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        
+        <button class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+    </div>
+</header>
+
+<div id="dynamic-banner"></div>
+
+
+<main class="content">
+    <section class="page-section">
+        <h1>Cottage 8</h1>
+
+        <h2>Description</h2>
+        <p>Write your cottage description here.</p>
+
+        
+        <h2>Amenities</h2>
+        <ul>
+            <li>Wi-Fi</li>
+            <li>Full kitchen</li>
+            <li>Private deck</li>
+            <li>Lake access</li>
+        </ul>
+
+
+        <img src="images/cottage8/cottage8_bedroom1.JPEG" class="hero-img" alt="Bedroom">
+        <img src="images/cottage8/cottage8_bedroom2.JPEG" class="hero-img" alt="Bedroom">
+        <img src="images/cottage8/cottage8_bedroom3.JPEG" class="hero-img" alt="Bedroom">
+        <img src="images/cottage8/cottage8_outsideview.jpg" class="hero-img" alt="Outside">
+        <img src="images/cottage8/cottage8_washroom.JPEG" class="hero-img" alt="Washroom">
+        <img src="images/cottage8/cottage8_patio.jpg" class="hero-img" alt="Patio">
+        <img src="images/cottage8/cottage8_livingroom.JPEG" class="hero-img" alt="Living Room">
+        <img src="images/cottage8/cottage8_kitchen.JPEG" class="hero-img" alt="Laundry">
+        
+        <h2>Availability</h2>
+        <div id="calendar"></div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 Wasaga Sunset Cottages — All Rights Reserved</p>
+</footer>
+
+
+<script src="js/calendar.js"></script>
+<script src="js/ical.js"></script>
+<script src="js/cottages.js"></script>
+<script>
+    const thisCottage = cottages.find(c => c.page === "cottage-8.html");
+    loadMergedCalendar(
+        [thisCottage.airbnbIcal, thisCottage.vrboIcal, thisCottage.bookingIcal],
+        "calendar"
+    );
+</script>
+
+
+<script src="js/banner.js"></script>
+<script src="js/menu.js"></script>
+
+
+
+
+</body>
+</html>

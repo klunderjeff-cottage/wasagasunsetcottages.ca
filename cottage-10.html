@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cottage 10</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Wasaga Sunset Cottages</a>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cottages.html">Cottages</a></li>
+                <li><a href="rates.html">Rates & Availability</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+        <button class="hamburger" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+    </div>
+</header>
+
+<div id="dynamic-banner"></div>
+
+<main class="content">
+    <section class="page-section">
+        <h1>Cottage 10</h1>
+
+        <h2>Entire home in Wasaga Beach, Canada — 2 guests · Studio · 1 bed · 1 bath</h2>
+
+        <p>
+            Easy walk to the largest fresh water beach in the world. Sip your coffee on the front deck. 
+            Cute studio cottage with pull-out couch with its own kitchen/bath. Beach 1 is the busiest beach in 
+            Wasaga with tons of restaurants and surf shops. Please remember to bring your own bedding. 
+            All of our cottages are professionally cleaned before each guest checks in.
+        </p>
+
+        <h2>Amenities</h2>
+        <ul>
+            <li>Wi-Fi</li>
+            <li>Full kitchen</li>
+            <li>Private deck</li>
+            <li>Lake access</li>
+        </ul>
+
+        <img src="images/cottage10/cottage10_backyard.avif" class="hero-img" alt="Outside">
+        <img src="images/cottage10/cottage10_washroom.JPEG" class="hero-img" alt="Washroom">
+        <img src="images/cottage10/cottage10_livingroom1.avif" class="hero-img" alt="Living Room">
+        <img src="images/cottage10/cottage10_livingroom2.avif" class="hero-img" alt="Living Room">
+        <img src="images/cottage10/cottage10_kitchen1.avif" class="hero-img" alt="Kitchen">
+        <img src="images/cottage10/cottage10_kitchen2.avif" class="hero-img" alt="Kitchen">
+
+        <h2>Availability</h2>
+
+        <div class="calendar-controls">
+            <button type="button" class="cal-prev" data-cottage="c10">Previous</button>
+            <button type="button" class="cal-next" data-cottage="c10">Next</button>
+        </div>
+
+        <div class="three-month-wrapper">
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c10-0"></span>
+                <div id="calendar-c10-0" class="calendar"></div>
+            </div>
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c10-1"></span>
+                <div id="calendar-c10-1" class="calendar"></div>
+            </div>
+
+            <div class="single-month">
+                <span class="cal-month-label" id="month-label-c10-2"></span>
+                <div id="calendar-c10-2" class="calendar"></div>
+            </div>
+
+        </div>
+
+        <div class="calendar-legend">
+            <span class="legend-airbnb">🟦 Airbnb</span>
+            <span class="legend-direct">🟩 Direct Booking</span>
+        </div>
+
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© 2026 Wasaga Sunset Cottages — All Rights Reserved</p>
+</footer>
+
+<script src="js/calendar.js"></script>
+<script src="js/ical.js"></script>
+<script src="js/cottages.js"></script>
+
+<script>
+    const cottageId = "c10";
+    const cottage = cottages.find(c => c.id === cottageId);
+    const cottageMonthOffsets = { c10: 0 };
+
+    function loadThreeMonths() {
+        for (let m = 0; m < 3; m++) {
+            loadMergedCalendar(
+                [cottage.airbnbIcal],   // Cottage 10 HAS Airbnb
+                `calendar-${cottageId}-${m}`,
+                cottageId,
+                cottageMonthOffsets[cottageId] + m,
+                `month-label-${cottageId}-${m}`
+            );
+        }
+    }
+
+    document.querySelector(".cal-prev").addEventListener("click", () => {
+        cottageMonthOffsets[cottageId]--;
+        loadThreeMonths();
+    });
+
+    document.querySelector(".cal-next").addEventListener("click", () => {
+        cottageMonthOffsets[cottageId]++;
+        loadThreeMonths();
+    });
+
+    loadThreeMonths();
+</script>
+
+<script src="js/banner.js"></script>
+<script src="js/menu.js"></script>
+
+</body>
+</html>
