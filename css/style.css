@@ -386,7 +386,8 @@ h1, h2, h3 {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 10px;
 }
 
 .hero img {
@@ -398,22 +399,25 @@ h1, h2, h3 {
 .hero-text {
     position: absolute;
     bottom: 15px;
-    left: 20px;
+    left: 10px;
     background: rgba(255,255,255,0.85);
-    padding: 2.5rem;
-    border-radius: 12px;
-    max-width: 360px;
+    padding: .1rem 1.5rem 1.5rem 1.5rem; /* top right bottom left */
+    border-radius: 15px;
+    max-width: 300px;
+    text-align:center;
 }
 
 .hero-btn {
-    display: inline-block;
+    display: block;
     margin-top: 1rem;
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem 0.25rem;
     background: #0066aa;
     color: #fff;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    margin: 1rem auto 0 auto;
+    margin-left: -5px;
 }
 
 .hero-btn:hover {
@@ -575,7 +579,7 @@ h1, h2, h3 {
 
     .hero-text {
         position: static;
-        margin-top: -40px;
+        margin-top: 10px;
         margin-left: 10px;
         margin-right: 10px;
     }
