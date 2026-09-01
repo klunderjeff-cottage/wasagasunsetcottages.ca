@@ -150,3 +150,14 @@ async function loadMergedCalendar(icalUrls, calendarElementId, cottageId, monthO
 
     renderCalendar(allEvents, calendarElementId, monthOffset, monthLabelId);
 }
+
+/* ============================
+   OWNER MODE: SHOW LEGEND ONLY WHEN ?owner=true
+   ============================ */
+const params = new URLSearchParams(window.location.search);
+if (params.get('owner') === 'true') {
+    document.querySelectorAll('.calendar-legend').forEach(el => {
+        el.style.display = 'flex';
+    });
+}
+
