@@ -67,8 +67,17 @@
             div.className = "rate-card cottage-calendar-block";
 
             div.innerHTML = `
+                
                 <h2>${cottage.name}</h2>
+
+                <div class="rates-thumb">
+  <img src="images/${cottage.id.replace('c', 'cottage')}/${cottage.id.replace('c', 'cottage')}.JPEG"
+       alt="${cottage.name} Thumbnail">
+</div>
+
+
                 <p><strong>Rate:</strong> ${cottage.rate}</p>
+
 
                 <div class="calendar-controls">
                     <button type="button" class="cal-prev" data-cottage="${cottage.id}">Previous</button>
@@ -172,7 +181,17 @@
         return html;
     }
 
-    document.addEventListener("DOMContentLoaded", renderRatesAndCalendars);
+    document.addEventListener("DOMContentLoaded", () => {
+        renderRatesAndCalendars();
+
+        // ⭐ OWNER MODE ADDED HERE
+        const params = new URLSearchParams(window.location.search);
+        if ((params.get('owner') || '').toLowerCase() === 'true') {
+            document.querySelectorAll('.calendar-legend').forEach(el => {
+                el.style.display = 'flex';
+            });
+        }
+    });
 </script>
 
 <script src="js/menu.js"></script>

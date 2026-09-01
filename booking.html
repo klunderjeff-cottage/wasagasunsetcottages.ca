@@ -72,6 +72,8 @@
 </footer>
 
 <script src="js/cottages.js"></script>
+
+<!--
 <script>
     const select = document.getElementById('cottage-select');
     cottages.forEach(c => {
@@ -81,6 +83,81 @@
         select.appendChild(opt);
     });
 </script>
+
+-->
+
+<script>
+    const select = document.getElementById('cottage-select');
+    cottages.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;          /* THIS IS THE FIX */
+        opt.textContent = c.name;
+        select.appendChild(opt);
+    });
+</script>
+
+<script>
+// Cottages that can ONLY be booked Friday → Friday
+const weeklyOnlyCottages = ["c3", "c7"];
+
+function isFriday(date) {
+    return date.getDay() === 5; // 5 = Friday
+}
+
+function validateWeeklyBooking(cottageId, startDate, endDate) {
+    if (!weeklyOnlyCottages.includes(cottageId)) {
+        return true; // normal cottages, no restriction
+    }
+
+    // Must start on Friday
+    if (!isFriday(startDate)) {
+        alert("This cottage can only be booked weekly (Friday to Friday). Please select a Friday check-in date.");
+        return false;
+    }
+
+    // Must end on Friday
+    if (!isFriday(endDate)) {
+        alert("This cottage can only be booked weekly (Friday to Friday). Please select a Friday check-out date.");
+        return false;
+    }
+
+    // Must be exactly 7 nights
+    const diffDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+    if (diffDays !== 7) {
+        alert("Weekly bookings must be Friday to Friday (7 nights).");
+        return false;
+    }
+
+    return true;
+}
+
+// Intercept form submission
+document.querySelector("form").addEventListener("submit", function(e) {
+    const cottageId = document.getElementById("cottage-select").value;   // FIXED
+
+    const startDate = new Date(document.querySelector("input[name='checkin']").value);
+    const endDate = new Date(document.querySelector("input[name='checkout']").value);
+
+    if (!validateWeeklyBooking(cottageId, startDate, endDate)) {
+        e.preventDefault(); // stop form submission
+    }
+});
+</script>
+<script>
+    // Disable past dates in the booking form date pickers
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    const checkinInput = document.querySelector("input[name='checkin']");
+    const checkoutInput = document.querySelector("input[name='checkout']");
+
+    if (checkinInput) checkinInput.min = todayStr;
+    if (checkoutInput) checkoutInput.min = todayStr;
+</script>
+
 
 <script src="js/banner.js"></script>
 <script src="js/menu.js"></script>
