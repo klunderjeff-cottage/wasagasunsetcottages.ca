@@ -3,9 +3,10 @@
 --------------------------------*/
 body {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #b7d3e6; /* soft sea blue */
-    color: #333;
+    color: #080808;
+    justify-content: right;
 }
 
 h1, h2, h3 {
@@ -259,7 +260,7 @@ h1, h2, h3 {
 .calendar-legend {
     margin-top: 0.5rem;
     font-size: 0.85rem;
-    display: flex;
+    display: none;   /* HIDE LEGEND FOR EVERYONE */
     gap: 1rem;
 }
 
@@ -270,6 +271,12 @@ h1, h2, h3 {
 .legend-direct {
     color: #006600;
 }
+
+.cottage-video-thumb img {
+    width: 100%;
+    max-width: 300px;
+}
+
 
 /* ------------------------------
    RATES SECTION
@@ -361,6 +368,59 @@ h1, h2, h3 {
 .book-now-btn:hover {
     background: #e65c00;
 }
+
+
+.rates-thumb {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.rates-thumb img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.rates-thumb img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.rate-card h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* WEEKLY */
+
+.weekly-badge {
+    display: inline-block;
+    background: #ffcc00;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.weekly-note {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #444;
+    font-style: italic;
+}
+
+/* Past Dates Disenabling */
+.past-date {
+    background-color: #eee !important;
+    color: #999 !important;
+}
+
+
+
 
 /* ------------------------------
    GALLERY
