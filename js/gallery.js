@@ -1,10 +1,10 @@
 const galleryImages = [
-    { src: "images/gallery/sunset.JPG", alt: "At sunset" },
-    { src: "images/gallery/ourcottages.jpg", alt: "Our Cottages" },
+    { src: "images/gallery/sunset.JPG", alt: "At sunset", description: "Beautiful sunset view from the beach." },
+    { src: "images/gallery/ourcottages.jpg", alt: "Our Cottages", description: "Our cozy cottages just steps from the shoreline." },
     { src: "images/gallery/wasaga1.JPG", alt: "Wasaga" },
     { src: "images/gallery/wasaga2.JPG", alt: "Wasaga" }
 ];
-
+/*
 function renderGallery(containerId = "gallery-grid") {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -19,7 +19,37 @@ function renderGallery(containerId = "gallery-grid") {
         container.appendChild(el);
     });
 }
+*/
 
+function renderGallery(containerId = "gallery-grid") {
+
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    galleryImages.forEach((img, index) => {
+
+        const card = document.createElement("div");
+        card.className = "gallery-card";
+
+        const image = document.createElement("img");
+        image.src = img.src;
+        image.alt = img.alt || "";
+        image.loading = "lazy";
+        image.dataset.index = index;
+        image.addEventListener("click", openLightbox);
+
+        const caption = document.createElement("p");
+        caption.className = "gallery-caption";
+        caption.textContent = img.description || "";
+
+        card.appendChild(image);
+        card.appendChild(caption);
+
+        container.appendChild(card);
+
+    });
+
+}
 /* ------------------------------
    LIGHTBOX
 --------------------------------*/
