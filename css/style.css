@@ -439,6 +439,29 @@ h1, h2, h3 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
+/*NEWLY ADDED ON OCTOBER 3 */
+
+.gallery-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.gallery-card img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.5;
+}
+
 /* ------------------------------
    HERO (INDEX)
 --------------------------------*/
