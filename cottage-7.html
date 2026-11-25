@@ -50,7 +50,7 @@
         -->
 
         <h3>8 guests · 4 bedrooms · 5 beds · 1 bath</h3>
-        <h2>Description</h2>
+        
         <p>
             4 bedroom cottage sleeps 8 and includes full kitchen, bathroom, ensuite bathroom, 
             and laundry in the cottage. All our cottages are professionally cleaned before each guest 
@@ -68,14 +68,19 @@
             <li>Lake access</li>
         </ul>
 
-        <img src="images/cottage7/cottage7_bedroom1.JPEG" class="hero-img" alt="Bedroom">
-        <img src="images/cottage7/cottage7_bedroom2.JPEG" class="hero-img" alt="Bedroom">
-        <img src="images/cottage7/cottage7_bedroom3.JPEG" class="hero-img" alt="Bedroom">
-        <img src="images/cottage7/cottage7_outsideview.jpg" class="hero-img" alt="Outside">
-        <img src="images/cottage7/cottage7_washroom.JPEG" class="hero-img" alt="Washroom">
-        <img src="images/cottage7/cottage7_patio.jpg" class="hero-img" alt="Patio">
-        <img src="images/cottage7/cottage7_livingroom.JPEG" class="hero-img" alt="Living Room">
-        <img src="images/cottage7/cottage7_kitchen.JPEG" class="hero-img" alt="Laundry">
+<div class="cottage-gallery-grid">
+
+<img src="images/cottage7/cottage7_bedroom1.JPEG" class="hero-img gallery-image" alt="Bedroom">
+<img src="images/cottage7/cottage7_bedroom2.JPEG" class="hero-img gallery-image" alt="Bedroom">
+<img src="images/cottage7/cottage7_bedroom3.JPEG" class="hero-img gallery-image" alt="Bedroom">
+<img src="images/cottage7/cottage7_outsideview.jpg" class="hero-img gallery-image" alt="Outside">
+<img src="images/cottage7/cottage7_washroom.JPEG" class="hero-img gallery-image" alt="Washroom">
+<img src="images/cottage7/cottage7_patio.jpg" class="hero-img gallery-image" alt="Patio">
+<img src="images/cottage7/cottage7_livingroom.JPEG" class="hero-img gallery-image" alt="Living Room">
+<img src="images/cottage7/cottage7_kitchen.JPEG" class="hero-img gallery-image" alt="Kitchen">
+
+</div>
+
 
         <h2>Availability</h2>
 
@@ -156,6 +161,18 @@
 
 <script src="js/banner.js"></script>
 <script src="js/menu.js"></script>
+
+<!-- Added this to change the photos in the cottages tab to put in the grid style than just big ones -->
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-prev">&#10094;</button>
+
+    <img id="lightbox-img" src="" alt="">
+
+    <button class="lightbox-next">&#10095;</button>
+</div>
+
+<script src ="js/lightbox.js"></script>
 
 </body>
 </html>

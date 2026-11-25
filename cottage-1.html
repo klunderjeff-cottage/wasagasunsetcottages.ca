@@ -47,11 +47,9 @@
                 </a>
             </div>
         -->    
-           <h3> 4 guests 1 bedroom 2 beds 1 bath</h3>
+           <h3> 4 guests · 1 bedroom · 2 beds · 1 bath</h3>
 
-           <h2>Description</h2>
-        
-
+           
         <p>Just a quick stroll from the world’s largest freshwater beach, this bright and comfortable one‑bedroom cottage 
             is the perfect place to unwind. Sip your coffee on the front deck and enjoy the sound of the waves. The cottage 
             includes a full kitchen with a full‑size fridge and stove, a pull‑out couch for extra sleeping space, and 
@@ -68,14 +66,27 @@
             <li>Lake access</li>
         </ul>
 
+        <!--
+
         <img src="images/cottage1/cottage1_livingroom1.JPEG" class="hero-img" alt="Living Room">
         <img src="images/cottage1/cottage1_bedroom.JPEG" class="hero-img" alt="Bedroom">
-       
-        <!--  <img src="images/cottage1/cottage1_kitchen.jpg" class="hero-img" alt="Kitchen"> -->
        
         <img src="images/cottage1/cottage1_washroom.JPEG" class="hero-img" alt="Washroom">
         <img src="images/cottage1/cottage1_patio.JPEG" class="hero-img" alt="cottage1_patio">
         <img src="images/cottage1/cottage1_livingroom2.JPEG" class="hero-img" alt="Living Room">
+
+    -->
+
+    <!-- Newly added code to put the pictures in a grid rather than single as it is too big and overwhelming. 2026 Nov 16-->
+    <div class="cottage-gallery-grid">
+    
+    <img src="images/cottage1/cottage1_livingroom1.JPEG" class="hero-img gallery-image" alt="Living Room">
+    <img src="images/cottage1/cottage1_bedroom.JPEG" class="hero-img gallery-image" alt="Bedroom">
+    <img src="images/cottage1/cottage1_washroom.JPEG" class="hero-img gallery-image" alt="Washroom">
+    <img src="images/cottage1/cottage1_patio.JPEG" class="hero-img gallery-image" alt="Patio">
+    <img src="images/cottage1/cottage1_livingroom2.JPEG" class="hero-img gallery-image" alt="Living Room">
+
+    </div>
 
         <h2>Availability</h2>
 
@@ -154,6 +165,18 @@
 
 <script src="js/banner.js"></script>
 <script src="js/menu.js"></script>
+
+<!-- Added this to change the photos in the cottages tab to put in the grid style than just big ones -->
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-prev">&#10094;</button>
+
+    <img id="lightbox-img" src="" alt="">
+
+    <button class="lightbox-next">&#10095;</button>
+</div>
+
+<script src ="js/lightbox.js"></script>
 
 </body>
 </html>
